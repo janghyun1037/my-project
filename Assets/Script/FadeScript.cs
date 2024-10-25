@@ -15,16 +15,28 @@ public class FadeScript : MonoBehaviour //페이드 아웃, 인 코드
     }
     IEnumerator FadeFlow()
     {
-        Panel.gameObject.SetActive(false);
+        Panel.gameObject.SetActive(true);
+        time = 0f;
         Color alpha = Panel.color;
-        while (alpha.a <1f)
+        while (alpha.a < 1f)
         {
             time += Time.deltaTime / F_time;
             alpha.a = Mathf.Lerp(0, 1, time);
             Panel.color = alpha;
             yield return null;
         }
+        time = 0f;
+
+        yield return new WaitForSeconds(1f);
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / F_time;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            Panel.color = alpha;
+            yield return null;
+        }
+        Panel.gameObject.SetActive(false);
         yield return null;
     }
 }
-//이걸 어케 합쳐야 하지? 그냥 페이드 뺼까?
