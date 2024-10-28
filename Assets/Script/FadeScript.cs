@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeScript : MonoBehaviour //페이드 아웃, 인 코드
 {
@@ -27,6 +28,7 @@ public class FadeScript : MonoBehaviour //페이드 아웃, 인 코드
         }
         time = 0f;
 
+        SceneManager.LoadScene("In Game");
         yield return new WaitForSeconds(1f);
 
         while (alpha.a > 0f)
