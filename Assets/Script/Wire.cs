@@ -31,6 +31,7 @@ public class Wire : MonoBehaviour
             hook.position = transform.position;
             mousedir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             isHookActive = true;
+            isLineMax = false;
             hook.gameObject.SetActive(true);
         }
 
@@ -38,7 +39,7 @@ public class Wire : MonoBehaviour
         {
             hook.Translate(mousedir.normalized * Time.deltaTime * 15);
 
-            if(Vector2.Distance(transform.position, hook.position) > 5)
+            if(Vector2.Distance(transform.position, hook.position) > 16)
             {
                 isLineMax = true;
             }
