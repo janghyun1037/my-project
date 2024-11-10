@@ -4,50 +4,50 @@ using UnityEngine;
 
 public class Wire : MonoBehaviour
 {
-    public LineRenderer Line;
-    public Transform Hook;
+    public LineRenderer line;
+    public Transform hook;
     Vector2 mousedir;
 
     public bool isHookActive;
     public bool isLineMax;
     void Start()
     {
-        Line.positionCount = 2;
-        Line.endWidth = Line.startWidth = 0.05f;
-        Line.SetPosition(0, transform.position);
-        Line.SetPosition(1, Hook.position);
-        Line.useWorldSpace = true;
+        line.positionCount = 2;
+        line.endWidth = line.startWidth = 0.05f;
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, hook.position);
+        line.useWorldSpace = true;
     }
 
     void Update()
     {
-        Line.SetPosition(0, transform.position);
-        Line.SetPosition(1, Hook.position);
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, hook.position);
 
         if (Input.GetKeyDown(KeyCode.E) && !isHookActive)
         {
-            Hook.position = transform.position;
+            hook.position = transform.position;
             mousedir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             isHookActive = true;
-            Hook.gameObject.SetActive(true);
+            hook.gameObject.SetActive(true);
         }
 
         if (isHookActive && !isLineMax)
         {
-            Hook.Translate(mousedir.normalized * Time.deltaTime * 15);
-            if (Vector2.Distance(transform.position, Hook.position) > 5)
+            hook.Translate(mousedir.normalized * Time.deltaTime * 15);
+
+            if(Vector2.Distance(transform.position, hook.position) > 5)
             {
                 isLineMax = true;
             }
-        }
-        else if(isHookActive && !isLineMax)
+        }else if(isHookActive && isLineMax)
         {
-            Hook.position = Vector2.MoveTowards(Hook.position, transform.position, Time.deltaTime * 15);
-            if(Vector2.Distance(transform.position, Hook.position) < 0.1f)
+            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 15);
+            if(Vector2.Distance(transform.position, hook.position) < 0.1f)
             {
                 isHookActive = false;
                 isLineMax = false;
-                Hook.gameObject.SetActive(false);
+                hook.gameObject.SetActive(false);
             }
         }
     }
