@@ -25,14 +25,13 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")//Player 스크립트를 포함한 오브젝트가 그라운드라는 오브젝트 태그에 닿았을 때
         {
-            if (jumpCount > 1) jumpCount = 1; //만약 jumpCount가 2를 넘으면 jumpCount를 2로 초기화를 한다.(예외처리) 
-            jumpCount = 1;
+            if (jumpCount > 2) jumpCount = 2; //만약 jumpCount가 2를 넘으면 jumpCount를 2로 초기화를 한다.(예외처리) 
+            jumpCount = 2;
         }
     }
-
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2 && jumpCount > 0) //jumpCount가 2보다 작거나 0보다 클 때  
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= 2 && jumpCount > 0) //jumpCount가 2보다 작거나 같고 0보다 클 때  
         {
             rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse); //ForceMode2D.Impulse란 총알 발사나 폭발같은 순간적으로 힘이 가해질 때 사용된다.
             jumpCount--; //점프(Space)를 누를 때마다 jumpCount가 1씩 감소한다.
