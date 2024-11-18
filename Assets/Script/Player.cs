@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private SpriteRenderer playerSpriteRenderer;
     public float moveSpeed = 10f;
     Rigidbody2D rb;
     int jumpCount = 0;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -23,10 +25,11 @@ public class Player : MonoBehaviour
         Jump();
         Move();
         Dash();
+        FlipX();
+        
     }
 
 
-    //-----------------------------------플래이어
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")//Player 스크립트를 포함한 오브젝트가 그라운드라는 오브젝트 태그에 닿았을 때
@@ -35,6 +38,8 @@ public class Player : MonoBehaviour
             jumpCount = 2;
         }
     }
+    //-----------------------------------매서드
+
     //-----------------------------------점프
     void Jump()
     {
@@ -73,5 +78,21 @@ public class Player : MonoBehaviour
             moveSpeed = dashSpeed;
         }
         isdash = false;
+    }
+
+    void FlipX()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+
+            playerSpriteRenderer.flipX = false;
+
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+
+            playerSpriteRenderer.flipX = true;
+
+        }
     }
 }
