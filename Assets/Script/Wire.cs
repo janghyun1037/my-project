@@ -39,7 +39,7 @@ public class Wire : MonoBehaviour
         {
             hook.Translate(mousedir.normalized * Time.deltaTime * 15);
 
-            if(Vector2.Distance(transform.position, hook.position) > 14)
+            if(Vector2.Distance(transform.position, hook.position) > 20)
             {
                 isLineMax = true;
             }

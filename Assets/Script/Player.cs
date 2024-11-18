@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     int jumpCount = 0;
     public float jumpPower = 10f;
+    private bool isdash;
+    public float dashSpeed;
+    public float defaultTime;
+    public float dashTime;
 
     private void Start()
     {
@@ -18,9 +22,11 @@ public class Player : MonoBehaviour
     {
         Jump();
         Move();
+        Dash();
     }
 
 
+    //-----------------------------------플래이어
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")//Player 스크립트를 포함한 오브젝트가 그라운드라는 오브젝트 태그에 닿았을 때
@@ -29,6 +35,7 @@ public class Player : MonoBehaviour
             jumpCount = 2;
         }
     }
+    //-----------------------------------점프
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount <= 2 && jumpCount > 0) //jumpCount가 2보다 작거나 같고 0보다 클 때  
@@ -37,12 +44,34 @@ public class Player : MonoBehaviour
             jumpCount--; //점프(Space)를 누를 때마다 jumpCount가 1씩 감소한다.
         }
     }
-
+    //-----------------------------------움직임
     void Move()
     {
         float h = Input.GetAxis("Horizontal");
         Vector3 pos = transform.position;
         pos.x += h * moveSpeed * Time.deltaTime; //Time.deltaTime이란 컴퓨터 성능에 무관하게 여러 사용자의 동일한 FPS값을 보장해준다.
         transform.position = pos; //나의 위치를 pos값으로 초기화 시켜준다.
+    }
+    //-----------------------------------대쉬
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isdash = true;
+        }
+        if(dashTime <= 0)
+        {
+            moveSpeed = 10;
+            if (isdash)
+            {
+                dashTime = defaultTime;
+            }
+        }
+        else
+        {
+            dashTime -= Time.deltaTime;
+            moveSpeed = dashSpeed;
+        }
+        isdash = false;
     }
 }
