@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         }
         isdash = false;
     }
-
+    //-----------------------------------√‡ ∞Ì¡§
     void FlipX()
     {
         if (Input.GetKey(KeyCode.D))
