@@ -37,15 +37,15 @@ public class Wire : MonoBehaviour
 
         if (isHookActive && !isLineMax && !isAttach)
         {
-            hook.Translate(mousedir.normalized * Time.deltaTime * 15);
+            hook.Translate(mousedir.normalized * Time.deltaTime * 40);
 
-            if(Vector2.Distance(transform.position, hook.position) > 20)
+            if(Vector2.Distance(transform.position, hook.position) > 15)
             {
                 isLineMax = true;
             }
         }else if(isHookActive && isLineMax && !isAttach)
         {
-            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 15);
+            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 500);
             if(Vector2.Distance(transform.position, hook.position) < 0.1f)
             {
                 isHookActive = false;
