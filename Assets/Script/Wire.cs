@@ -37,15 +37,15 @@ public class Wire : MonoBehaviour
 
         if (isHookActive && !isLineMax && !isAttach)
         {
-            hook.Translate(mousedir.normalized * Time.deltaTime * 40);
+            hook.Translate(mousedir.normalized * Time.deltaTime * 35); // 가는 시간
 
-            if(Vector2.Distance(transform.position, hook.position) > 15)
+            if(Vector2.Distance(transform.position, hook.position) > 15) //날라가는 거리
             {
                 isLineMax = true;
             }
         }else if(isHookActive && isLineMax && !isAttach)
         {
-            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 500);
+            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 500); //돌아오는 시간
             if(Vector2.Distance(transform.position, hook.position) < 0.1f)
             {
                 isHookActive = false;
