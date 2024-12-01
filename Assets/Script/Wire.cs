@@ -37,7 +37,7 @@ public class Wire : MonoBehaviour
 
         if (isHookActive && !isLineMax && !isAttach)
         {
-            hook.Translate(mousedir.normalized * Time.deltaTime * 35); // 가는 시간
+            hook.Translate(mousedir.normalized * Time.deltaTime * 30); // 가는 시간
 
             if(Vector2.Distance(transform.position, hook.position) > 15) //날라가는 거리
             {
@@ -45,7 +45,7 @@ public class Wire : MonoBehaviour
             }
         }else if(isHookActive && isLineMax && !isAttach)
         {
-            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 500); //돌아오는 시간
+            hook.position = Vector2.MoveTowards(hook.position, transform.position, Time.deltaTime * 350); //돌아오는 시간
             if(Vector2.Distance(transform.position, hook.position) < 0.1f)
             {
                 isHookActive = false;
