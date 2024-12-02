@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("³¡");
             SceneManager.LoadScene("The END");
         }
     }

@@ -5,14 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private SpriteRenderer playerSpriteRenderer;
-    public float moveSpeed = 10f;
+    public float moveSpeed;
     Rigidbody2D rb;
     int jumpCount = 0;
     public float jumpPower = 10f;
     private bool isdash;
     public float dashSpeed;
     public float defaultTime;
-    public float dashTime;
+    public float dashTime = 0;
 
     private void Start()
     {
@@ -52,10 +52,9 @@ public class Player : MonoBehaviour
     //-----------------------------------움직임
     void Move()
     {
-        float h = Input.GetAxis("Horizontal");
-        Vector3 pos = transform.position;
-        pos.x += h * moveSpeed * Time.deltaTime; //Time.deltaTime이란 컴퓨터 성능에 무관하게 여러 사용자의 동일한 FPS값을 보장해준다.
-        transform.position = pos; //나의 위치를 pos값으로 초기화 시켜준다.
+        float h = Input.GetAxisRaw("Horizontal");
+        Debug.Log("Horizontal Input: " + h); // 입력 값 확인
+        rb.velocity = new Vector2(h * moveSpeed, rb.velocity.y);
     }
     //-----------------------------------대쉬
     void Dash()
@@ -64,9 +63,8 @@ public class Player : MonoBehaviour
         {
             isdash = true;
         }
-        if(dashTime <= 0)
+        if (dashTime <= 0)
         {
-            moveSpeed = 10;
             if (isdash)
             {
                 dashTime = defaultTime;
