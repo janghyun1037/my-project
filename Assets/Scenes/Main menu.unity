@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 248787370}
   - component: {fileID: 248787369}
   - component: {fileID: 248787373}
+  - component: {fileID: 248787374}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -587,6 +588,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1150696012}
+--- !u!114 &248787374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248787368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ce58f14b1f1bc45800d6524ebb8734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 10138d17d391eb24cb83f17e5619ab8d, type: 2}
+  musicSlider: {fileID: 0}
 --- !u!1 &389019160
 GameObject:
   m_ObjectHideFlags: 0
