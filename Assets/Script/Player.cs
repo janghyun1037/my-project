@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private SpriteRenderer playerSpriteRenderer;
-    public float moveSpeed;
+    public float moveSpeed = 10f;
     Rigidbody2D rb;
     int jumpCount = 0;
     public float jumpPower = 10f;
@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
         Move();
         Dash();
         FlipX();
+        if(dashTime <= 0)
+        {
+            moveSpeed = 10f;
+        }
         
     }
 
@@ -53,7 +57,6 @@ public class Player : MonoBehaviour
     void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
-        Debug.Log("Horizontal Input: " + h); // 입력 값 확인
         rb.velocity = new Vector2(h * moveSpeed, rb.velocity.y);
     }
     //-----------------------------------대쉬
